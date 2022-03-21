@@ -1,9 +1,10 @@
 import "./App.css";
 import * as React from "react";
-import MainPage from "./pages/MainPage";
-import Homepage from "./pages/Homepage";
+import MainPage from "././pages/MainPage";
+import Homepage from "././pages/Homepage";
+import Pricing from "./pages/Pricing";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-//import Link from '@mui/material/Link';
+import Layout from "./pages/components/Layout";
 
 // function Copyright() {
 //   return (
@@ -17,15 +18,21 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 //   </Typography>
 //   );
 // }
+// function Dango() => {
+//	console.log("Hello")
+// }
 function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/create" element={<MainPage />} />
-      </Routes>
-    </BrowserRouter>
-  );
+	return (
+		<BrowserRouter>
+			<Layout>
+				<Routes>
+					<Route path="/" element={<Homepage />} />
+					<Route path="/create" element={<MainPage />} />
+					<Route path="/price" element={<Pricing />} />
+				</Routes>
+			</Layout>
+		</BrowserRouter>
+	);
 }
 
 export default App;
