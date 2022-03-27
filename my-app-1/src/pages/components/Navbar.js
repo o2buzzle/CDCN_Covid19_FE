@@ -13,7 +13,25 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { useNavigate } from "react-router-dom";
 
-const pages = ["Products", "price", "Contact", "Log in", "Signup"];
+//const pages = ["Products", "price", "Contact", "Log in", "Signup"];
+const pages = [
+  {
+    name: "Products",
+    link: "product",
+  },
+  {
+    name: "Price",
+    link: "price",
+  },
+  {
+    name: "Contact",
+    link: "contact",
+  },
+  {
+    name: "Signup",
+    link: "signup",
+  },
+];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function Navbar() {
@@ -43,7 +61,7 @@ function Navbar() {
     setAnchorElUser(null);
   };
   return (
-    <AppBar position="static">
+    <AppBar position="static" style={{ background: "#2E3B55" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -85,8 +103,12 @@ function Navbar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleOpenPages} value={pages}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem
+                  key={page.name}
+                  onClick={handleOpenPages}
+                  value={pages.link}
+                >
+                  <Typography textAlign="center">{page.name}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -102,12 +124,12 @@ function Navbar() {
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Button
-                key={page}
+                key={page.name}
                 onClick={handleOpenPages}
                 sx={{ my: 2, color: "white", display: "block" }}
-                value={page}
+                value={page.link}
               >
-                {page}
+                {page.name}
               </Button>
             ))}
           </Box>
