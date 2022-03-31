@@ -16,7 +16,7 @@ import { useNavigate } from "react-router-dom";
 //const pages = ["Products", "price", "Contact", "Log in", "Signup"];
 const pages = [
   {
-    name: "Products",
+    name: "OCR",
     link: "product",
   },
   {
