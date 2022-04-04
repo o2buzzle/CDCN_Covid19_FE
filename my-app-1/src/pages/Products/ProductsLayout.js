@@ -1,13 +1,11 @@
 import React from "react";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import ProductDrawer from "./ProductDrawer";
 
 function Layout({ children }) {
   return (
     <div>
-      <Navbar />
+      <ProductDrawer />
       {children}
-      <Footer />
     </div>
   );
 }

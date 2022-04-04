@@ -1,20 +1,20 @@
 import * as React from "react";
-import Product from "././pages/Product";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import PageLayout from "./pages/PageLayout";
 import HomePage from "./pages/HomePage";
 import Pricing from "./pages/Pricing";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Layout from "./pages/components/Layout";
+import Products from "./pages/Products/Products";
 
 function App() {
   return (
     <BrowserRouter>
-      <Layout>
+      <PageLayout>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/product" element={<Product />} />
+          <Route path="/products/*" element={<Products />} />
           <Route path="/price" element={<Pricing />} />
         </Routes>
-      </Layout>
+      </PageLayout>
     </BrowserRouter>
   );
 }

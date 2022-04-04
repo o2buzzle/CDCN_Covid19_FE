@@ -1,22 +1,11 @@
 import React from "react";
-import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import Grid from "@mui/material/Grid";
+import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import CssBaseline from "@mui/material/CssBaseline";
 import GlobalStyles from "@mui/material/GlobalStyles";
-import Box from "@mui/material/Box";
-import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
-import ListItem from "@mui/material/ListItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
-import Drawer from "@mui/material/Drawer";
-const drawerWidth = 240;
+import Grid from "@mui/material/Grid";
 
 const outerTheme = createTheme({
   palette: {
@@ -96,7 +85,7 @@ const node = [
   },
 ];
 
-function MainPage() {
+function OCR() {
   const [input, setInput] = React.useState("");
   const [output, setOutput] = React.useState("");
 
@@ -106,63 +95,21 @@ function MainPage() {
   const onButtonClick = () => {
     setOutput(input);
   };
-  // const [state, setState] = React.useState({
-  //   left: false,
-  // });
-
-  // const toggleDrawer = (anchor, open) => (event) => {
-  //   setState({ ...state, [anchor]: open });
-  //   console.log({ ...state, [anchor]: open });
-  // };
-  const [state, setState] = React.useState(false);
-
-  const toggleDrawer = () => (event) => {
-    console.log(state);
-    setState(!state);
-  };
-
-  const list = () => (
-    <Box role="presentation" onClick={toggleDrawer(false)}>
-      <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem button key={text} onClick={() => console.log({ text })}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  );
   return (
     <React.Fragment>
       <GlobalStyles
         styles={{ ul: { margin: 0, padding: 0, listStyle: "none" } }}
       />
       <CssBaseline />
-      <React.Fragment>
-        <Button onClick={toggleDrawer()}>Hello</Button>
-        <Drawer anchor="left" open={state} onClose={toggleDrawer()}>
-          {list()}
-        </Drawer>
-      </React.Fragment>
-      <Typography variant="h1" color="text.secondary" align="center">
-        Hello
-      </Typography>
-      <Grid container justifyContent="center" spacing="1">
-        <Grid item xs={4}>
+
+      <Grid
+        container
+        sx={{ flexGrow: 1 }}
+        justifyContent="center"
+        alignItems="baseline"
+        spacing="2"
+      >
+        <Grid item xs={5}>
           <TextField
             multiline
             rows="5"
@@ -170,15 +117,27 @@ function MainPage() {
             fullWidth
             value={input}
             onChange={onTextInput}
+            margin="normal"
           />
+          <Button
+            variant="contained"
+            size="small"
+            disabled={!input}
+            onClick={() => {
+              onButtonClick();
+            }}
+          >
+            Submit
+          </Button>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={5}>
           <TextField
             label="Output"
             multiline
             rows="5"
             fullWidth
             value={output}
+            margin="normal"
           />
         </Grid>
         <Grid item xs>
@@ -201,18 +160,8 @@ function MainPage() {
           </ThemeProvider>
         </Grid>
       </Grid>
-      <Button
-        variant="contained"
-        size="small"
-        disabled={!input}
-        onClick={() => {
-          onButtonClick();
-        }}
-      >
-        Submit
-      </Button>
     </React.Fragment>
   );
 }
 
-export default MainPage;
+export default OCR;

@@ -107,7 +107,7 @@ function PricingContent() {
                   titleTypographyProps={{ align: "center" }}
                   action={
                     tier.title === "Pro" ? (
-                      <StarIcon onClick={console.log("star")} />
+                      <StarIcon onClick={() => console.log("star")} />
                     ) : null
                   }
                   subheaderTypographyProps={{
