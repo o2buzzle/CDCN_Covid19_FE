@@ -28,9 +28,6 @@ const pages = [
 
 function Navbar() {
   const history = useNavigate();
-  // const handleCloseUserMenu = () => {
-  //   setAnchorElUser(null);
-  // };
   return (
     <AppBar position="static" style={{ background: "#2E3B55" }}>
       <Container maxWidth="xl">
