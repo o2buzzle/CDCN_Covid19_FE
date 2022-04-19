@@ -1,11 +1,11 @@
-import React from "react";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import CssBaseline from "@mui/material/CssBaseline";
 import GlobalStyles from "@mui/material/GlobalStyles";
 import Grid from "@mui/material/Grid";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import TextField from "@mui/material/TextField";
+import React from "react";
 
 const outerTheme = createTheme({
   palette: {
@@ -96,7 +96,7 @@ function OCR() {
     setOutput(input);
   };
   return (
-    <React.Fragment>
+    <>
       <GlobalStyles
         styles={{ ul: { margin: 0, padding: 0, listStyle: "none" } }}
       />
@@ -160,7 +160,7 @@ function OCR() {
           </ThemeProvider>
         </Grid>
       </Grid>
-    </React.Fragment>
+    </>
   );
 }
 

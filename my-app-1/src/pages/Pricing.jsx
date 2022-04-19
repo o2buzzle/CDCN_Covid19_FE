@@ -1,16 +1,16 @@
-import * as React from "react";
+import StarIcon from "@mui/icons-material/StarBorder";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardHeader from "@mui/material/CardHeader";
-import CssBaseline from "@mui/material/CssBaseline";
-import Grid from "@mui/material/Grid";
-import StarIcon from "@mui/icons-material/StarBorder";
-import Typography from "@mui/material/Typography";
-import GlobalStyles from "@mui/material/GlobalStyles";
 import Container from "@mui/material/Container";
+import CssBaseline from "@mui/material/CssBaseline";
+import GlobalStyles from "@mui/material/GlobalStyles";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import * as React from "react";
 
 const tiers = [
   {
@@ -54,7 +54,7 @@ const tiers = [
 
 function PricingContent() {
   return (
-    <React.Fragment>
+    <>
       <GlobalStyles
         styles={{ ul: { margin: 0, padding: 0, listStyle: "none" } }}
       />
@@ -113,12 +113,6 @@ function PricingContent() {
                   subheaderTypographyProps={{
                     align: "center",
                   }}
-                  sx={{
-                    backgroundColor: (theme) =>
-                      theme.palette.mode === "light"
-                        ? theme.palette.grey[200]
-                        : theme.palette.grey[700],
-                  }}
                 />
                 <CardContent>
                   <Box
@@ -134,7 +128,7 @@ function PricingContent() {
                       variant="h3"
                       color="text.primary"
                     >
-                      ${tier.price}
+                      {tier.price}
                     </Typography>
                     <Typography variant="h6" color="text.secondary">
                       /mo
@@ -163,7 +157,7 @@ function PricingContent() {
           ))}
         </Grid>
       </Container>
-    </React.Fragment>
+    </>
   );
 }
 

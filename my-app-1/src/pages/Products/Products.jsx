@@ -1,9 +1,9 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import OCR from "../Products/OCR";
-import ProductsLayout from "../Products/ProductsLayout";
 import ApiPage from "./APIPage";
 import Installationguide from "./Installationguide";
+import OCR from "./OCR";
+import ProductsLayout from "./ProductsLayout";
 
 function Products() {
   return (

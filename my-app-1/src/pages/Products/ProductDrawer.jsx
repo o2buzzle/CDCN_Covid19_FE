@@ -30,7 +30,7 @@ function ProductDrawer() {
           <ListItem
             button
             key={item.name}
-            onClick={() => nav("/products" + item.path)}
+            onClick={() => nav(`/products${item.path}`)}
           >
             <ListItemText primary={item.name} />
           </ListItem>
@@ -39,7 +39,7 @@ function ProductDrawer() {
     </Box>
   );
   return (
-    <React.Fragment>
+    <>
       <IconButton
         size="large"
         aria-label="account of current user"
@@ -53,7 +53,7 @@ function ProductDrawer() {
       <Drawer anchor="left" open={state} onClose={toggleDrawer()}>
         {list()}
       </Drawer>
-    </React.Fragment>
+    </>
   );
 }
 
