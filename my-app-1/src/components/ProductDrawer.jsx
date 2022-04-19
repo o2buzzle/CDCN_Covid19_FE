@@ -20,11 +20,11 @@ function ProductDrawer() {
   const [state, setState] = React.useState(false);
   const nav = useNavigate();
 
-  const toggleDrawer = () => (event) => {
+  const toggleDrawer = () => {
     setState(!state);
   };
   const list = () => (
-    <Box role="presentation" onClick={toggleDrawer(false)}>
+    <Box role="presentation" onClick={() => toggleDrawer()}>
       <List>
         {lists.map((item) => (
           <ListItem
@@ -45,12 +45,12 @@ function ProductDrawer() {
         aria-label="account of current user"
         aria-controls="menu-appbar"
         aria-haspopup="true"
-        onClick={toggleDrawer()}
+        onClick={() => toggleDrawer()}
         color="inherit"
       >
         <MenuIcon />
       </IconButton>
-      <Drawer anchor="left" open={state} onClose={toggleDrawer()}>
+      <Drawer anchor="left" open={state} onClose={() => toggleDrawer()}>
         {list()}
       </Drawer>
     </>

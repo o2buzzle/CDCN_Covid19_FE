@@ -34,7 +34,7 @@ function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
-    console.log("open products");
+    // console.log("open products");
     setAnchorElNav(event.currentTarget);
   };
 
@@ -47,7 +47,6 @@ function Navbar() {
         <Toolbar disableGutters>
           <Button
             variant="h6"
-            noWrap
             component="div"
             sx={{ mr: 2, display: { xs: "flex", md: "flex" } }}
             style={{ display: "inline" }}
@@ -58,7 +57,7 @@ function Navbar() {
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             <Button
               sx={{ my: 2, color: "white", display: "block" }}
-              onClick={handleOpenNavMenu}
+              onClick={() => handleOpenNavMenu}
               id="products"
             >
               Products

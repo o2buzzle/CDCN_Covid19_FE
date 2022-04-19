@@ -1,7 +1,8 @@
 import React from "react";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 
+// eslint-disable-next-line react/prop-types
 function PageLayout({ children }) {
   return (
     <div>

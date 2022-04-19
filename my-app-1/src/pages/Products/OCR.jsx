@@ -152,8 +152,7 @@ function OCR() {
             >
               {node.map((item) => (
                 <Button key={item.value} color={item.color}>
-                  {" "}
-                  {item.value}{" "}
+                  {item.value}
                 </Button>
               ))}
             </ButtonGroup>

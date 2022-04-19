@@ -53,7 +53,11 @@ export default function Footer() {
             <ul>
               {footer.description.map((item) => (
                 <li key={item}>
-                  <Link href="#" variant="subtitle1" color="text.secondary">
+                  <Link
+                    href="https://www.youtube.com/watch?v=LVST14eeZE8"
+                    variant="subtitle1"
+                    color="text.secondary"
+                  >
                     {item}
                   </Link>
                 </li>
