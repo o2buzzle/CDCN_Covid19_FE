@@ -1,8 +1,6 @@
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
-import CssBaseline from "@mui/material/CssBaseline";
-import GlobalStyles from "@mui/material/GlobalStyles";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import React from "react";
@@ -10,11 +8,6 @@ import React from "react";
 function HomePage() {
   return (
     <>
-      <GlobalStyles
-        styles={{ ul: { margin: 0, padding: 0, listStyle: "none" } }}
-      />
-      <CssBaseline />
-
       <Container sx={{ pt: 6, pb: 6 }}>
         <Grid container rowSpacing={1}>
           <Grid item xs={6} md={6}>

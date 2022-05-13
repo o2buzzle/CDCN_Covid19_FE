@@ -6,8 +6,6 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardHeader from "@mui/material/CardHeader";
 import Container from "@mui/material/Container";
-import CssBaseline from "@mui/material/CssBaseline";
-import GlobalStyles from "@mui/material/GlobalStyles";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
@@ -55,11 +53,6 @@ const tiers = [
 function PricingContent() {
   return (
     <>
-      <GlobalStyles
-        styles={{ ul: { margin: 0, padding: 0, listStyle: "none" } }}
-      />
-      <CssBaseline />
-
       {/* Hero unit */}
       <Container
         disableGutters
@@ -105,11 +98,7 @@ function PricingContent() {
                   title={tier.title}
                   subheader={tier.subheader}
                   titleTypographyProps={{ align: "center" }}
-                  action={
-                    tier.title === "Pro" ? (
-                      <StarIcon onClick={() => console.log("star")} />
-                    ) : null
-                  }
+                  action={tier.title === "Pro" ? <StarIcon /> : null}
                   subheaderTypographyProps={{
                     align: "center",
                   }}

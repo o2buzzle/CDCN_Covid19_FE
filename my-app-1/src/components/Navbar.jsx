@@ -1,3 +1,6 @@
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import MenuIcon from "@mui/icons-material/Menu";
+import { IconButton } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -8,23 +11,32 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
+import logo from "../logo.jpg";
 
-const productpages = [
+const productsdrawer = [
   {
     name: "OCR",
-    link: "/products",
+    link: "products",
   },
+  // {
+  //   name: "NER"
+  //   link: "/NER"
+  // },
+];
+
+const productpages = [
   {
     name: "Price",
     link: "/price",
   },
   {
+    name: "About",
+    link: "/about",
+  },
+
+  {
     name: "Contact",
     link: "/contact",
-  },
-  {
-    name: "Signup",
-    link: "/signup",
   },
 ];
 
@@ -34,7 +46,6 @@ function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
-    // console.log("open products");
     setAnchorElNav(event.currentTarget);
   };
 
@@ -42,25 +53,31 @@ function Navbar() {
     setAnchorElNav(null);
   };
   return (
-    <AppBar position="static" style={{ background: "#2E3B55" }}>
+    <AppBar position="static" style={{ background: "#29c7cc" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Button
-            variant="h6"
+            variant="h2"
             component="div"
-            sx={{ mr: 2, display: { xs: "flex", md: "flex" } }}
-            style={{ display: "inline" }}
+            sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
+            onClick={() => history("/")}
           >
-            {/* <img src={logo} alt="" /> */}
+            {/* <img
+              src="https://i.pinimg.com/originals/e7/ab/83/e7ab83a55559b6e3b90c3cd40e7c5517.jpg"
+              alt=""
+              width="100"
+              height="50"
+            /> */}
+            ONER
           </Button>
-
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             <Button
-              sx={{ my: 2, color: "white", display: "block" }}
-              onClick={() => handleOpenNavMenu}
+              sx={{ my: 2, color: "white" }}
+              onClick={handleOpenNavMenu}
               id="products"
             >
               Products
+              <ArrowDropDownIcon />
             </Button>
             <Menu
               id="menu-appbar"
@@ -77,11 +94,16 @@ function Navbar() {
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: "block", md: "block" },
+                display: { xs: "none", md: "block" },
               }}
             >
-              {productpages.map((page) => (
-                <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+              {productsdrawer.map((page) => (
+                <MenuItem
+                  key={page.name}
+                  onClick={() => {
+                    history(page.link);
+                  }}
+                >
                   <Typography textAlign="center">{page.name}</Typography>
                 </MenuItem>
               ))}
@@ -102,6 +124,43 @@ function Navbar() {
                 {page.name}
               </Button>
             ))}
+          </Box>
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
+          >
+            <img src={logo} alt="" width="100" height="50" />
+          </Typography>
+          <Box sx={{ display: { xs: "flex", md: "none" } }}>
+            <IconButton onClick={handleOpenNavMenu}>
+              <MenuIcon sx={{ fontSize: 40, color: "white" }} />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "left",
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{
+                display: { xs: "block", md: "none" },
+              }}
+            >
+              {productpages.map((page) => (
+                <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">{page.name}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
           </Box>
         </Toolbar>
       </Container>
