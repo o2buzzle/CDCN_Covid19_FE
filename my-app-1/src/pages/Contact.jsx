@@ -1,12 +1,14 @@
-import { TextField } from "@mui/material";
+import {
+  Button,
+  Card,
+  CardContent,
+  Grid,
+  TextField,
+  Typography,
+} from "@mui/material";
 import React from "react";
 
 export default function Contact() {
-  const [nameInput, setNameInput] = React.useState("");
-  const onTextInput = (e) => {
-    setNameInput(e.target.value);
-    console.log(e.target.value);
-  };
   return (
     <div>
       <header
@@ -32,31 +34,84 @@ export default function Contact() {
           Contact
         </h1>
       </header>
-      <form
-        style={{
-          margin: "20px 0",
-          width: "80%",
-          justifyContent: "center",
-          boxSizing: "border-box",
-          padding: "12px 20px",
-        }}
-      >
-        <TextField
-          variant="outlined"
-          fullWidth
-          label="Full Name"
-          value={nameInput}
-          margin="normal"
-          sx={{ padding: "10px" }}
-        />
-        <TextField
-          variant="outlined"
-          fullWidth
-          label="Full Name"
-          value=""
-          sx={{ padding: "10px" }}
-        />
-      </form>
+      <Grid>
+        <Card style={{ maxWidth: 450, padding: "20px 5px", margin: "0 auto" }}>
+          <CardContent>
+            <Typography
+              variant="h4"
+              color="textSecondary"
+              component="div"
+              gutterBottom
+              align="center"
+            >
+              Get in touch
+            </Typography>
+            <form>
+              <Grid container spacing={1}>
+                <Grid xs={12} sm={6} item>
+                  <TextField
+                    placeholder="Enter first name"
+                    label="First Name"
+                    variant="outlined"
+                    fullWidth
+                    required
+                  />
+                </Grid>
+                <Grid xs={12} sm={6} item>
+                  <TextField
+                    placeholder="Enter last name"
+                    label="Last Name"
+                    variant="outlined"
+                    fullWidth
+                    required
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    type="email"
+                    placeholder="Enter email"
+                    label="Email"
+                    variant="outlined"
+                    fullWidth
+                    required
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    type="number"
+                    placeholder="Enter phone number"
+                    label="Phone"
+                    variant="outlined"
+                    fullWidth
+                    required
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    label="Message"
+                    multiline
+                    rows={4}
+                    placeholder="Type your message here"
+                    variant="outlined"
+                    fullWidth
+                    required
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    fullWidth
+                  >
+                    Submit
+                  </Button>
+                </Grid>
+              </Grid>
+            </form>
+          </CardContent>
+        </Card>
+      </Grid>
     </div>
   );
 }

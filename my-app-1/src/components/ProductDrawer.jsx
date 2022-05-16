@@ -10,9 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 const lists = [
   { name: "OCR", path: "" },
-  { name: "Installation Guide", path: "/install" },
   { name: "Tutorial", path: "/tutorial" },
-  { name: "Model Hub", path: "/model-hub" },
   { name: "API Documentation", path: "/api-document" },
 ];
 

@@ -6,8 +6,8 @@ import React from "react";
 
 const footers = [
   {
-    title: "Company",
-    description: ["Team", "History", "Contact us", "Locations"],
+    title: "Oner",
+    description: ["Team", "Contact us", "Locations"],
   },
   {
     title: "Features",

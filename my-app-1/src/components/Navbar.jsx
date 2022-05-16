@@ -25,10 +25,10 @@ const productsdrawer = [
 ];
 
 const productpages = [
-  {
-    name: "Price",
-    link: "/price",
-  },
+  // {
+  //   name: "Price",
+  //   link: "/price",
+  // },
   {
     name: "About",
     link: "/about",
@@ -112,9 +112,10 @@ function Navbar() {
             {productpages.map((page) => (
               <Button
                 key={page.name}
-                onClick={() => {
-                  history(page.link);
-                }}
+                // onClick={() => {
+                //   history(page.link);
+                // }}
+                href={page.link}
                 sx={{
                   my: 2,
                   color: "white",

@@ -1,11 +1,12 @@
 /* eslint-disable */
-import { Button, TextField } from "@mui/material";
+import { Button, Stack, TextField } from "@mui/material";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import React, { useState } from "react";
+import Switch, { Case, Default } from "react-switch-case";
 
 const patient_id = "#5400d9";
 const name = "#6a5608";
@@ -18,7 +19,6 @@ const date = "#3ad9f1";
 const symtom_and_disease = "#4d000b";
 const transportation = "#e4b84a";
 function FileOner() {
-  const fileInput = React.useRef();
   const [selectedFile, setSelectedFile] = useState();
   const [isFilePicked, setIsFilePicked] = useState(false);
   const [inputOCR, setInputOCR] = useState("");
@@ -43,196 +43,240 @@ function FileOner() {
     setOutputNER();
     setInputSubmitted(false);
   };
-  const handleOCRSubmission = () => {
-    if (selectedFile) console.log(selectedFile);
-    // let formData = new FormData();
+  const handleFileTextSubmission = () => {
+    console.log(selectedFile);
     formData.append("file", selectedFile);
-    fetch(
-      "https://techcrunch.com/wp-json/wp/v2/posts?per_page=100&context=embed",
-      {
-        method: "GET",
-        //   body: formData,
-      }
-    )
+    fetch("http://oner.buzzle.works:8000/ner/file_upload", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        let tempResult = [];
+        result.map((i) => tempResult.push([i.token, i.prediction]));
+        setOutputNER(tempResult);
+        setInputSubmitted(true);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+  const handleOCRSubmission = () => {
+    // if (isNaN(selectedFile)) {
+    //   console.log("No File");
+    //   return;
+    // }
+    console.log(selectedFile);
+    formData.append("file", selectedFile);
+    fetch("http://oner.buzzle.works:8000/ocr/file_upload", {
+      method: "POST",
+      body: formData,
+    })
       .then((response) => response.json())
       .then((result) => {
         let tempResult = "";
-        // eslint-disable-next-line no-confusing-arrow, no-return-assign
-        result.map(
-          (i) =>
-            // eslint-disable-next-line prettier/prettier
-            //   i.confidence > 80 ? (tempResult += i.text) : tempResult
-            (tempResult += i.id)
+        result.map((i) =>
+          i.confidence > 80 ? (tempResult += i.text + " ") : tempResult
         );
         console.log(tempResult);
-        setOutputOCR(tempResult);
+        setInputOCR(tempResult);
       })
       .catch((error) => {
         console.error("Error:", error);
       });
   };
   const handleNERSubmission = () => {
-    if (inputOCR) {
-      setInputSubmitted(true);
-      setOutputNER("abc");
-      //   fetch("http://oner.buzzle.works:8000/NER/file_upload", {
-      //     method: "POST",
-      //     body: inputOCR,
-      //   })
-      //     .then((response) => response.json())
-      //     .then((result) => {
-      //       setOutputNER(result);
-      //     })
-      //     .catch((error) => {
-      //       console.error("Error:", error);
-      //     });
-      console.log("NER");
-    }
+    fetch("http://oner.buzzle.works:8000/ner/text_upload", {
+      method: "POST",
+      headers: { "Content-Type": "application/json;charset=utf-8" },
+      body: JSON.stringify({ text: inputOCR }),
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        let tempResult = [];
+        result.map((i) => tempResult.push([i.token, i.prediction]));
+        console.log(tempResult);
+        setOutputNER(tempResult);
+        setInputSubmitted(true);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
   return (
-    <Grid container spacing={2} justifyContent="center" alignItems="baseline">
-      <Grid item xs={4}>
-        <TextField
-          multiline
-          rows="5"
-          label="Input"
-          fullWidth
-          value={inputOCR}
-          onChange={onTextInput}
-        />
-        {/* <input type="text" id="fname" name="fname" /> */}
-        <Button onClick={() => fileInput.current.click()}>Upload</Button>
-        <input
-          ref={fileInput}
-          type="file"
-          name="file"
-          style={{ display: "none" }}
-          onChange={handleSelectedFile}
-        />
-        {isFilePicked ? (
-          <div>
-            <p />
-          </div>
-        ) : (
-          <p>Select a file to show details</p>
-        )}
-
-        <button onClick={handleOCRSubmission}>Submit OCR</button>
-        <button onClick={handleNERSubmission}>Submit NER</button>
-        <button onClick={handleClearOutput}>Clear output</button>
-      </Grid>
-      <Grid item xs={4}>
-        {/* <TextField
-          label="Output"
-          multiline
-          rows="5"
-          fullWidth
-          value={outputOCR}
-        >
-          <p> áđâsđâsđâsađáád</p>
-        </TextField> */}
-        <Box
-          style={{
-            border: "2px solid green",
-            wordWrap: "break-word",
-            maxWidth: "900px",
-            padding: "18px 18px",
-          }}
-        >
-          {inputSubmitted ? (
-            <Grid item xs={2} sm={4} md={8}>
-              <Box
-                style={{
-                  border: "1px solid grey",
-                  wordWrap: "break-word",
-                  maxWidth: "900px",
-                  padding: "18px 18px",
-                  display: "flex",
-                }}
-              >
+    <Grid container spacing={1} justifyContent="center" alignItems="baseline">
+      <Grid item xs={7}>
+        <Stack>
+          <TextField
+            multiline
+            rows="7"
+            label="Input"
+            fullWidth
+            value={inputOCR}
+            onChange={(e) => setInputOCR(e.target.value)}
+          />
+          <Box
+            style={{
+              marginTop: "30px",
+              borderRadius: "5px",
+              border: "2px solid grey",
+              wordWrap: "break-word",
+              padding: "18px 18px",
+              height: "200px",
+              maxHeight: "300px",
+              overflowY: "scroll",
+            }}
+          >
+            {inputSubmitted ? (
+              <div>
                 {outputNER.map((i) => (
-                  <Switch condition={i.predictions.substring(2)}>
+                  <Switch condition={i[1].substring(2)}>
                     <Case value={"PATIENT_ID"}>
                       <span style={{ color: patient_id }}>
                         {" "}
-                        {i.tokens.replace("_", " ")}
+                        {i[0].replace("_", " ")}
                       </span>
                     </Case>
                     <Case value={"NAME"}>
                       <span style={{ color: name }}>
                         {" "}
-                        {i.tokens.replace("_", " ")}
+                        {i[0].replace("_", " ")}
                       </span>
                     </Case>
                     <Case value={"AGE"}>
                       <span style={{ color: age }}>
                         {" "}
-                        {i.tokens.replace("_", " ")}
+                        {i[0].replace("_", " ")}
                       </span>
                     </Case>
                     <Case value={"GENDER"}>
                       <span style={{ color: gender }}>
                         {" "}
-                        {i.tokens.replace("_", " ")}
+                        {i[0].replace("_", " ")}
                       </span>
                     </Case>
                     <Case value={"JOB"}>
                       <span style={{ color: job }}>
                         {" "}
-                        {i.tokens.replace("_", " ")}
+                        {i[0].replace("_", " ")}
                       </span>
                     </Case>
                     <Case value={"ORGANIZATION"}>
                       <span style={{ color: organization }}>
                         {" "}
-                        {i.tokens.replace("_", " ")}
+                        {i[0].replace("_", " ")}
                       </span>
                     </Case>
                     <Case value={"LOCATION"}>
                       <span style={{ color: location }}>
                         {" "}
-                        {i.tokens.replace("_", " ")}
+                        {i[0].replace("_", " ")}
                       </span>
                     </Case>
                     <Case value={"DATE"}>
                       <span style={{ color: date }}>
                         {" "}
-                        {i.tokens.replace("_", " ")}
+                        {i[0].replace("_", " ")}
                       </span>
                     </Case>
                     <Case value={"SYMTOM_AND_DISEASE"}>
                       <span style={{ color: symtom_and_disease }}>
                         {" "}
-                        {i.tokens.replace("_", " ")}
+                        {i[0].replace("_", " ")}
                       </span>
                     </Case>
                     <Case value={"TRANSPORTATION"}>
                       <span style={{ color: transportation }}>
                         {" "}
-                        {i.tokens.replace("_", " ")}
+                        {i[0].replace("_", " ")}
                       </span>
                     </Case>
                     <Default>
                       <span style={{ color: "black" }}>
                         {" "}
-                        {i.tokens[0] === "<" ? null : i.tokens}
+                        {i[0][0] === "<" ? null : i[0].replace("_", " ")}
                       </span>
                     </Default>
                   </Switch>
                 ))}
-              </Box>
-            </Grid>
+              </div>
+            ) : (
+              <div>Chưa có kết quả</div>
+            )}
+          </Box>
+        </Stack>
+
+        <Stack direction="row" alignItems="center" spacing={2}>
+          {" "}
+          <label htmlFor="contained-button-file">
+            <input
+              type="file"
+              name="file"
+              id="contained-button-file"
+              style={{ display: "none" }}
+              onChange={handleSelectedFile}
+            />
+            <Button variant="contained" component="span">
+              Upload
+            </Button>
+          </label>
+          <Button
+            style={{
+              borderRadius: 4,
+              color: "white",
+              align: "center",
+              fontSize: "12px",
+              margin: "12px",
+            }}
+            variant="contained"
+            size="medium"
+            onClick={handleOCRSubmission}
+          >
+            Submit OCR
+          </Button>
+          <Button
+            style={{
+              borderRadius: 4,
+              color: "white",
+              align: "center",
+              fontSize: "12px",
+              margin: "12px",
+            }}
+            variant="contained"
+            onClick={handleNERSubmission}
+          >
+            Submit NER
+          </Button>
+          <Button
+            style={{
+              borderRadius: 4,
+              color: "white",
+              align: "center",
+              fontSize: "12px",
+              margin: "12px",
+            }}
+            variant="contained"
+            onClick={handleClearOutput}
+          >
+            Clear output
+          </Button>
+        </Stack>
+        <div>
+          {isFilePicked ? (
+            <div>
+              <p> {selectedFile.name}</p>
+            </div>
           ) : (
-            <div>Chưa có kết quả</div>
+            <p>Select a file to show details</p>
           )}
-        </Box>
+        </div>
       </Grid>
       <Grid item>
         <Box
           sx={{ width: "100%", height: 670, maxWidth: 360, bgcolor: "white" }}
         >
           <List disablePadding={true}>
-            <ListItem>
+            <ListItem key="patient_id">
               <ListItemButton
                 style={{
                   borderRadius: 10,
@@ -247,7 +291,7 @@ function FileOner() {
                 PATIENT_ID
               </ListItemButton>
             </ListItem>
-            <ListItem>
+            <ListItem key="name">
               <ListItemButton
                 style={{
                   borderRadius: 10,
@@ -262,7 +306,7 @@ function FileOner() {
                 NAME
               </ListItemButton>
             </ListItem>
-            <ListItem>
+            <ListItem key="age">
               <ListItemButton
                 style={{
                   borderRadius: 10,
@@ -277,7 +321,7 @@ function FileOner() {
                 AGE
               </ListItemButton>
             </ListItem>
-            <ListItem>
+            <ListItem key="gender">
               <ListItemButton
                 style={{
                   borderRadius: 10,
@@ -292,7 +336,7 @@ function FileOner() {
                 GENDER
               </ListItemButton>
             </ListItem>
-            <ListItem>
+            <ListItem key="job">
               <ListItemButton
                 style={{
                   borderRadius: 10,
@@ -307,7 +351,7 @@ function FileOner() {
                 JOB
               </ListItemButton>
             </ListItem>
-            <ListItem>
+            <ListItem key="organization">
               <ListItemButton
                 style={{
                   borderRadius: 10,
@@ -322,7 +366,7 @@ function FileOner() {
                 ORGANIZATION
               </ListItemButton>
             </ListItem>
-            <ListItem>
+            <ListItem key="location">
               <ListItemButton
                 style={{
                   borderRadius: 10,
@@ -337,7 +381,7 @@ function FileOner() {
                 LOCATION
               </ListItemButton>
             </ListItem>
-            <ListItem>
+            <ListItem key="date">
               <ListItemButton
                 style={{
                   borderRadius: 10,
@@ -352,7 +396,7 @@ function FileOner() {
                 DATE
               </ListItemButton>
             </ListItem>
-            <ListItem>
+            <ListItem key="symtom_and_disease">
               <ListItemButton
                 style={{
                   borderRadius: 10,
@@ -367,7 +411,7 @@ function FileOner() {
                 SYMPTOM_AND_DISEASE
               </ListItemButton>
             </ListItem>
-            <ListItem>
+            <ListItem key="transportation">
               <ListItemButton
                 style={{
                   borderRadius: 10,
