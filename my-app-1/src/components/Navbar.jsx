@@ -1,4 +1,3 @@
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import MenuIcon from "@mui/icons-material/Menu";
 import { IconButton } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
@@ -13,22 +12,7 @@ import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../logo.jpg";
 
-const productsdrawer = [
-  {
-    name: "OCR",
-    link: "products",
-  },
-  // {
-  //   name: "NER"
-  //   link: "/NER"
-  // },
-];
-
 const productpages = [
-  // {
-  //   name: "Price",
-  //   link: "/price",
-  // },
   {
     name: "About",
     link: "/about",
@@ -62,65 +46,21 @@ function Navbar() {
             sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
             onClick={() => history("/")}
           >
-            {/* <img
-              src="https://i.pinimg.com/originals/e7/ab/83/e7ab83a55559b6e3b90c3cd40e7c5517.jpg"
-              alt=""
-              width="100"
-              height="50"
-            /> */}
             ONER
           </Button>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            <Button
-              sx={{ my: 2, color: "white" }}
-              onClick={handleOpenNavMenu}
-              id="products"
-            >
-              Products
-              <ArrowDropDownIcon />
+            <Button sx={{ my: 2, color: "white" }} href="/product" id="product">
+              Product
             </Button>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: "none", md: "block" },
-              }}
-            >
-              {productsdrawer.map((page) => (
-                <MenuItem
-                  key={page.name}
-                  onClick={() => {
-                    history(page.link);
-                  }}
-                >
-                  <Typography textAlign="center">{page.name}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-
             {productpages.map((page) => (
               <Button
-                key={page.name}
-                // onClick={() => {
-                //   history(page.link);
-                // }}
                 href={page.link}
                 sx={{
                   my: 2,
                   color: "white",
                   display: "block",
                 }}
+                key={page.name}
               >
                 {page.name}
               </Button>

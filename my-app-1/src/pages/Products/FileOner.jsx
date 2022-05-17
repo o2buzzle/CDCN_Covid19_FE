@@ -247,19 +247,21 @@ function FileOner() {
           >
             Submit NER
           </Button>
-          <Button
-            style={{
-              borderRadius: 4,
-              color: "white",
-              align: "center",
-              fontSize: "12px",
-              margin: "12px",
-            }}
-            variant="contained"
-            onClick={handleClearOutput}
-          >
-            Clear output
-          </Button>
+          <form onChange="this.form.reset()">
+            <Button
+              style={{
+                borderRadius: 4,
+                color: "white",
+                align: "center",
+                fontSize: "12px",
+                margin: "12px",
+              }}
+              variant="contained"
+              onClick={handleClearOutput}
+            >
+              Clear output
+            </Button>
+          </form>
         </Stack>
         <div>
           {isFilePicked ? (
