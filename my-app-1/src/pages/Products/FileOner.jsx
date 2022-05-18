@@ -8,6 +8,8 @@ import ListItemButton from "@mui/material/ListItemButton";
 import React, { useState } from "react";
 import Switch, { Case, Default } from "react-switch-case";
 
+console.log(process.env.REACT_APP_API_HOST);
+
 const patient_id = "#5400d9";
 const name = "#6a5608";
 const age = "#a2f48a";
@@ -46,7 +48,7 @@ function FileOner() {
   const handleFileTextSubmission = () => {
     console.log(selectedFile);
     formData.append("file", selectedFile);
-    fetch("http://oner.buzzle.works:8000/ner/file_upload", {
+    fetch(`http://${process.env.REACT_APP_API_HOST}/ner/file_upload`, {
       method: "POST",
       body: formData,
     })
@@ -68,7 +70,7 @@ function FileOner() {
     // }
     console.log(selectedFile);
     formData.append("file", selectedFile);
-    fetch("http://oner.buzzle.works:8000/ocr/file_upload", {
+    fetch(`http://${process.env.REACT_APP_API_HOST}/ocr/file_upload`, {
       method: "POST",
       body: formData,
     })
@@ -86,7 +88,7 @@ function FileOner() {
       });
   };
   const handleNERSubmission = () => {
-    fetch("http://oner.buzzle.works:8000/ner/text_upload", {
+    fetch(`http://${process.env.REACT_APP_API_HOST}/ner/text_upload`, {
       method: "POST",
       headers: { "Content-Type": "application/json;charset=utf-8" },
       body: JSON.stringify({ text: inputOCR }),

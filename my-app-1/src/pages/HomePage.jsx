@@ -50,7 +50,7 @@ function HomePage() {
             variant="contained"
             align="center"
             color="primary"
-            href="/products"
+            href="/product"
           >
             Try out ours product here
           </Button>
