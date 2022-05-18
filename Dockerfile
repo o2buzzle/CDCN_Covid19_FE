@@ -9,6 +9,6 @@ FROM alpine:latest
 RUN apk add ca-certificates nginx
 EXPOSE 80
 RUN rm /etc/nginx/http.d/default.conf
-COPY ./oner-frontend /etc/nginx/http.d/oner-frontend.conf
+COPY ./configs/oner-frontend /etc/nginx/http.d/oner-frontend.conf
 COPY --from=build-container /app/build /app/public
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
