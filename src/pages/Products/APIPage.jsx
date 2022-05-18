@@ -4,7 +4,8 @@ import "swagger-ui-react/swagger-ui.css";
 
 function APiPage() {
   return (
-    <SwaggerUI url={`http://${process.env.REACT_APP_API_HOST}/openapi.json`} />
+    /* prettier-ignore */
+    <SwaggerUI url={`${process.env.REACT_APP_API_HOST}/openapi.json`} />
   );
 }
 
