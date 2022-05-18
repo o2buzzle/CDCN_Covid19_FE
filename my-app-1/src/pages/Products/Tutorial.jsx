@@ -1,7 +1,7 @@
 import React from "react";
 
-function Installationguide() {
+function Tutorial() {
   return <div>Installationguide</div>;
 }
 
-export default Installationguide;
+export default Tutorial;

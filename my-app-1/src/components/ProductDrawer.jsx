@@ -10,8 +10,8 @@ import { useNavigate } from "react-router-dom";
 
 const lists = [
   { name: "OCR", path: "" },
-  { name: "Tutorial", path: "/tutorial" },
-  { name: "API Documentation", path: "/api-document" },
+  { name: "Tutorial", path: "tutorial" },
+  { name: "API Documentation", path: "api-document" },
 ];
 
 function ProductDrawer() {
@@ -25,11 +25,7 @@ function ProductDrawer() {
     <Box role="presentation" onClick={() => toggleDrawer()}>
       <List>
         {lists.map((item) => (
-          <ListItem
-            button
-            key={item.name}
-            onClick={() => nav(`/products${item.path}`)}
-          >
+          <ListItem button key={item.name} onClick={() => nav(item.path)}>
             <ListItemText primary={item.name} />
           </ListItem>
         ))}

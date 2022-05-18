@@ -8,8 +8,6 @@ import ListItemButton from "@mui/material/ListItemButton";
 import React, { useState } from "react";
 import Switch, { Case, Default } from "react-switch-case";
 
-console.log(process.env.REACT_APP_API_HOST);
-
 const patient_id = "#5400d9";
 const name = "#6a5608";
 const age = "#a2f48a";
