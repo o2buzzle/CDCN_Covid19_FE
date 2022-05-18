@@ -2,7 +2,7 @@ FROM node:18 as build-container
 COPY ./ /app/
 WORKDIR /app/
 RUN npm install
-ENV REACT_APP_API_HOST=localhost:8000
+ENV REACT_APP_API_HOST=/api
 RUN npm run build
 
 FROM alpine:latest
