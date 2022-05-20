@@ -28,7 +28,7 @@ function HomePage() {
           variant="h3"
           sx={{ pt: 0, pb: 4 }}
         >
-          NER COVID anylazer with build in OCR text
+          NER COVID text analyzer with built-in OCR
         </Typography>
 
         <Typography
@@ -52,7 +52,7 @@ function HomePage() {
             color="primary"
             href="/product"
           >
-            Try out ours product here
+            Try out our product
           </Button>
         </Box>
       </Container>
