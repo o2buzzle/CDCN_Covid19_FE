@@ -5,11 +5,11 @@
     "jest": true
   },
   "extends": [
+    "airbnb",
     "react-app",
-    "plugin:react/recommended",
     "react-app/jest",
-    "plugin:prettier/recommended",
-    "airbnb"
+    "plugin:react/recommended",
+    "prettier"
   ],
   "settings": {
     "react": {
