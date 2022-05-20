@@ -46,7 +46,7 @@ function FileOner() {
   const handleFileTextSubmission = () => {
     console.log(selectedFile);
     formData.append("file", selectedFile);
-    fetch(`http://${process.env.REACT_APP_API_HOST}/ner/file_upload`, {
+    fetch(`${process.env.REACT_APP_API_HOST}/ner/file_upload`, {
       method: "POST",
       body: formData,
     })
@@ -68,7 +68,7 @@ function FileOner() {
     // }
     console.log(selectedFile);
     formData.append("file", selectedFile);
-    fetch(`http://${process.env.REACT_APP_API_HOST}/ocr/file_upload`, {
+    fetch(`${process.env.REACT_APP_API_HOST}/ocr/file_upload`, {
       method: "POST",
       body: formData,
     })
@@ -86,7 +86,7 @@ function FileOner() {
       });
   };
   const handleNERSubmission = () => {
-    fetch(`http://${process.env.REACT_APP_API_HOST}/ner/text_upload`, {
+    fetch(`${process.env.REACT_APP_API_HOST}/ner/text_upload`, {
       method: "POST",
       headers: { "Content-Type": "application/json;charset=utf-8" },
       body: JSON.stringify({ text: inputOCR }),
