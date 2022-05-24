@@ -206,7 +206,7 @@ function FileOner() {
           </Box>
         </Stack>
 
-        <Stack direction="row" alignItems="center" spacing={2}>
+        <Stack direction="row" alignItems="center">
           {" "}
           <label htmlFor="contained-button-file">
             <input
@@ -216,7 +216,17 @@ function FileOner() {
               style={{ display: "none" }}
               onChange={handleSelectedFile}
             />
-            <Button variant="contained" component="span">
+            <Button
+              style={{
+                borderRadius: 4,
+                color: "white",
+                align: "center",
+                fontSize: "12px",
+                margin: "12px",
+              }}
+              variant="contained"
+              component="span"
+            >
               Upload
             </Button>
           </label>
@@ -229,7 +239,6 @@ function FileOner() {
               margin: "12px",
             }}
             variant="contained"
-            size="medium"
             onClick={handleOCRSubmission}
           >
             Submit OCR
