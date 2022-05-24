@@ -132,67 +132,74 @@ function FileOner() {
                 {outputNER.map((i) => (
                   <Switch condition={i[1].substring(2)}>
                     <Case value={"PATIENT_ID"}>
-                      <span style={{ color: patient_id }}>
+                      <span style={{ color: patient_id, fontWeight: "bold" }}>
                         {" "}
                         {i[0].replace("_", " ")}
                       </span>
                     </Case>
                     <Case value={"NAME"}>
-                      <span style={{ color: name }}>
+                      <span style={{ color: name, fontWeight: "bold" }}>
                         {" "}
                         {i[0].replace("_", " ")}
                       </span>
                     </Case>
                     <Case value={"AGE"}>
-                      <span style={{ color: age }}>
+                      <span style={{ color: age, fontWeight: "bold" }}>
                         {" "}
                         {i[0].replace("_", " ")}
                       </span>
                     </Case>
                     <Case value={"GENDER"}>
-                      <span style={{ color: gender }}>
+                      <span style={{ color: gender, fontWeight: "bold" }}>
                         {" "}
                         {i[0].replace("_", " ")}
                       </span>
                     </Case>
                     <Case value={"JOB"}>
-                      <span style={{ color: job }}>
+                      <span style={{ color: job, fontWeight: "bold" }}>
                         {" "}
                         {i[0].replace("_", " ")}
                       </span>
                     </Case>
                     <Case value={"ORGANIZATION"}>
-                      <span style={{ color: organization }}>
+                      <span style={{ color: organization, fontWeight: "bold" }}>
                         {" "}
                         {i[0].replace("_", " ")}
                       </span>
                     </Case>
                     <Case value={"LOCATION"}>
-                      <span style={{ color: location }}>
+                      <span style={{ color: location, fontWeight: "bold" }}>
                         {" "}
                         {i[0].replace("_", " ")}
                       </span>
                     </Case>
                     <Case value={"DATE"}>
-                      <span style={{ color: date }}>
+                      <span style={{ color: date, fontWeight: "bold" }}>
                         {" "}
                         {i[0].replace("_", " ")}
                       </span>
                     </Case>
                     <Case value={"SYMTOM_AND_DISEASE"}>
-                      <span style={{ color: symtom_and_disease }}>
+                      <span
+                        style={{
+                          color: symtom_and_disease,
+                          fontWeight: "bold",
+                        }}
+                      >
                         {" "}
                         {i[0].replace("_", " ")}
                       </span>
                     </Case>
                     <Case value={"TRANSPORTATION"}>
-                      <span style={{ color: transportation }}>
+                      <span
+                        style={{ color: transportation, fontWeight: "bold" }}
+                      >
                         {" "}
                         {i[0].replace("_", " ")}
                       </span>
                     </Case>
                     <Default>
-                      <span style={{ color: "black" }}>
+                      <span style={{ color: "black", fontWeight: "bold" }}>
                         {" "}
                         {i[0][0] === "<" ? null : i[0].replace("_", " ")}
                       </span>
@@ -294,9 +301,10 @@ function FileOner() {
                   backgroundColor: patient_id,
                   color: "white",
                   align: "center",
-                  fontSize: "12px",
                   height: "50px",
-                  width: "200px",
+                  width: "250px",
+                  fontSize: "15px",
+                  fontWeight: "bold",
                 }}
               >
                 PATIENT_ID
@@ -309,9 +317,10 @@ function FileOner() {
                   backgroundColor: name,
                   color: "white",
                   align: "center",
-                  fontSize: "12px",
+                  fontSize: "15px",
                   height: "50px",
-                  width: "200px",
+                  width: "250px",
+                  fontWeight: "bold",
                 }}
               >
                 NAME
@@ -324,9 +333,10 @@ function FileOner() {
                   backgroundColor: age,
                   color: "white",
                   align: "center",
-                  fontSize: "12px",
+                  fontSize: "15px",
+                  fontWeight: "bold",
                   height: "50px",
-                  width: "200px",
+                  width: "250px",
                 }}
               >
                 AGE
@@ -339,9 +349,10 @@ function FileOner() {
                   backgroundColor: gender,
                   color: "white",
                   align: "center",
-                  fontSize: "12px",
+                  fontSize: "15px",
+                  fontWeight: "bold",
                   height: "50px",
-                  width: "200px",
+                  width: "250px",
                 }}
               >
                 GENDER
@@ -354,9 +365,10 @@ function FileOner() {
                   backgroundColor: job,
                   color: "white",
                   align: "center",
-                  fontSize: "12px",
+                  fontSize: "15px",
+                  fontWeight: "bold",
                   height: "50px",
-                  width: "200px",
+                  width: "250px",
                 }}
               >
                 JOB
@@ -369,9 +381,10 @@ function FileOner() {
                   backgroundColor: organization,
                   color: "white",
                   align: "center",
-                  fontSize: "12px",
+                  fontSize: "15px",
+                  fontWeight: "bold",
                   height: "50px",
-                  width: "200px",
+                  width: "250px",
                 }}
               >
                 ORGANIZATION
@@ -384,9 +397,10 @@ function FileOner() {
                   backgroundColor: location,
                   color: "white",
                   align: "center",
-                  fontSize: "12px",
+                  fontSize: "15px",
+                  fontWeight: "bold",
                   height: "50px",
-                  width: "200px",
+                  width: "250px",
                 }}
               >
                 LOCATION
@@ -399,9 +413,10 @@ function FileOner() {
                   backgroundColor: date,
                   color: "white",
                   align: "center",
-                  fontSize: "12px",
+                  fontSize: "15px",
+                  fontWeight: "bold",
                   height: "50px",
-                  width: "200px",
+                  width: "250px",
                 }}
               >
                 DATE
@@ -414,9 +429,10 @@ function FileOner() {
                   backgroundColor: symtom_and_disease,
                   color: "white",
                   align: "center",
-                  fontSize: "12px",
+                  fontSize: "15px",
+                  fontWeight: "bold",
                   height: "50px",
-                  width: "200px",
+                  width: "250px",
                 }}
               >
                 SYMPTOM_AND_DISEASE
@@ -429,9 +445,10 @@ function FileOner() {
                   backgroundColor: transportation,
                   color: "white",
                   align: "center",
-                  fontSize: "12px",
+                  fontSize: "15px",
+                  fontWeight: "bold",
                   height: "50px",
-                  width: "200px",
+                  width: "250px",
                 }}
               >
                 TRANSPORTATION
