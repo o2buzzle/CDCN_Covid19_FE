@@ -7,31 +7,23 @@ import React from "react";
 const footers = [
   {
     title: "Oner",
-    description: ["Team", "Contact us", "Locations"],
+    description: [
+      { name: "Team", link: "/about" },
+      { name: "Contact us", link: "/contact" },
+    ],
   },
   {
     title: "Features",
     description: [
-      "Cool stuff",
-      "Random feature",
-      "Team feature",
-      "Developer stuff",
-      "Another one",
+      { name: "OCR", link: "/product" },
+      { name: "NER", link: "/product" },
+      { name: "API documentation", link: "/product/api-document" },
     ],
   },
-  {
-    title: "Resources",
-    description: [
-      "Resource",
-      "Resource name",
-      "Another resource",
-      "Final resource",
-    ],
-  },
-  {
-    title: "Legal",
-    description: ["Privacy policy", "Terms of use"],
-  },
+  // {
+  //   title: "Legal",
+  //   description: ["Privacy policy", "Terms of use"],
+  // },
 ];
 export default function Footer() {
   return (
@@ -52,13 +44,14 @@ export default function Footer() {
             </Typography>
             <ul>
               {footer.description.map((item) => (
-                <li key={item}>
+                <li key={item.name}>
                   <Link
-                    href="https://www.youtube.com/watch?v=LVST14eeZE8"
+                    style={{ textDecoration: "none" }}
+                    href={item.link}
                     variant="subtitle1"
                     color="text.secondary"
                   >
-                    {item}
+                    {item.name}
                   </Link>
                 </li>
               ))}

@@ -1,4 +1,3 @@
-/* eslint-disable object-curly-newline */
 import * as React from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import AboutUs from "./pages/AboutUs";
