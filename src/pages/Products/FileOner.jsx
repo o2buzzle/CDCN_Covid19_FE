@@ -97,8 +97,7 @@ function FileOner() {
         result.map((i) => tempResult.push([i.token, i.prediction]));
         console.log(tempResult);
         setOutputNER(tempResult);
-        setInputSubmitted(true);
-      })
+        setInputSubmitted(true);})
       .catch((error) => {
         console.error("Error:", error);
       });
@@ -134,49 +133,49 @@ function FileOner() {
                     <Case value={"PATIENT_ID"}>
                       <span style={{ color: patient_id, fontWeight: "bold" }}>
                         {" "}
-                        {i[0].replace("_", " ")}
+                        {i[0].replaceAll("_", " ")}
                       </span>
                     </Case>
                     <Case value={"NAME"}>
                       <span style={{ color: name, fontWeight: "bold" }}>
                         {" "}
-                        {i[0].replace("_", " ")}
+                        {i[0].replaceAll("_", " ")}
                       </span>
                     </Case>
                     <Case value={"AGE"}>
                       <span style={{ color: age, fontWeight: "bold" }}>
                         {" "}
-                        {i[0].replace("_", " ")}
+                        {i[0].replaceAll("_", " ")}
                       </span>
                     </Case>
                     <Case value={"GENDER"}>
                       <span style={{ color: gender, fontWeight: "bold" }}>
                         {" "}
-                        {i[0].replace("_", " ")}
+                        {i[0].replaceAll("_", " ")}
                       </span>
                     </Case>
                     <Case value={"JOB"}>
                       <span style={{ color: job, fontWeight: "bold" }}>
                         {" "}
-                        {i[0].replace("_", " ")}
+                        {i[0].replaceAll("_", " ")}
                       </span>
                     </Case>
                     <Case value={"ORGANIZATION"}>
                       <span style={{ color: organization, fontWeight: "bold" }}>
                         {" "}
-                        {i[0].replace("_", " ")}
+                        {i[0].replaceAll("_", " ")}
                       </span>
                     </Case>
                     <Case value={"LOCATION"}>
                       <span style={{ color: location, fontWeight: "bold" }}>
                         {" "}
-                        {i[0].replace("_", " ")}
+                        {i[0].replaceAll("_", " ")}
                       </span>
                     </Case>
                     <Case value={"DATE"}>
                       <span style={{ color: date, fontWeight: "bold" }}>
                         {" "}
-                        {i[0].replace("_", " ")}
+                        {i[0].replaceAll("_", " ")}
                       </span>
                     </Case>
                     <Case value={"SYMTOM_AND_DISEASE"}>
@@ -187,7 +186,7 @@ function FileOner() {
                         }}
                       >
                         {" "}
-                        {i[0].replace("_", " ")}
+                        {i[0].replaceAll("_", " ")}
                       </span>
                     </Case>
                     <Case value={"TRANSPORTATION"}>
@@ -195,14 +194,70 @@ function FileOner() {
                         style={{ color: transportation, fontWeight: "bold" }}
                       >
                         {" "}
-                        {i[0].replace("_", " ")}
+                        {i[0].replaceAll("_", " ")}
                       </span>
                     </Case>
+                    <Case value={"LINEBREAK"}>
+                      <br>
+                      </br>
+                    </Case>
                     <Default>
-                      <span style={{ color: "black", fontWeight: "bold" }}>
-                        {" "}
-                        {i[0][0] === "<" ? null : i[0].replace("_", " ")}
-                      </span>
+                      <Switch condition={i[0]}>
+                        <Case value={","}>
+                          <span style={{ color: "black", fontWeight: "bold" }}>{","}</span>
+                        </Case>
+                        <Case value={"."}>
+                          <span style={{ color: "black", fontWeight: "bold" }}>{"."}</span>
+                        </Case>
+                        <Case value={"?"}>
+                          <span style={{ color: "black", fontWeight: "bold" }}>{"?"}</span>
+                        </Case>
+                        <Case value={";"}>
+                          <span style={{ color: "black", fontWeight: "bold" }}>{";"}</span>
+                        </Case>
+                        <Case value={"!"}>
+                          <span style={{ color: "black", fontWeight: "bold" }}>{"!"}</span>
+                        </Case>
+                        <Case value={"*"}>
+                          <span style={{ color: "black", fontWeight: "bold" }}>{"*"}</span>
+                        </Case>
+                        <Case value={"}"}>
+                          <span style={{ color: "black", fontWeight: "bold" }}>{")"}</span>
+                        </Case>
+                        <Case value={")"}>
+                          <span style={{ color: "black", fontWeight: "bold" }}>{")"}</span>
+                        </Case>
+                        <Case value={"@"}>
+                          <span style={{ color: "black", fontWeight: "bold" }}>{"@"}</span>
+                        </Case>
+                        <Case value={"&"}>
+                          <span style={{ color: "black", fontWeight: "bold" }}>{"&"}</span>
+                        </Case>
+                        <Case value={"#"}>
+                          <span style={{ color: "black", fontWeight: "bold" }}>{"#"}</span>
+                        </Case>
+                        <Case value={"%"}>
+                          <span style={{ color: "black", fontWeight: "bold" }}>{"%"}</span>
+                        </Case>
+                        <Case value={"^"}>
+                          <span style={{ color: "black", fontWeight: "bold" }}>{"^"}</span>
+                        </Case>
+                        <Case value={":"}>
+                          <span style={{ color: "black", fontWeight: "bold" }}>{":"}</span>
+                        </Case>
+                        <Case value={"]"}>
+                          <span style={{ color: "black", fontWeight: "bold" }}>{"]"}</span>
+                        </Case>
+                        <Case value={"/"}>
+                          <span style={{ color: "black", fontWeight: "bold" }}>{"/"}</span>
+                        </Case>
+                        <Default>
+                          <span style={{ color: "black", fontWeight: "bold" }}>
+                            {" "}
+                            {i[0][0] === "<" ? null : i[0].replaceAll("_", " ")}
+                          </span>
+                      </Default>
+                      </Switch>
                     </Default>
                   </Switch>
                 ))}
