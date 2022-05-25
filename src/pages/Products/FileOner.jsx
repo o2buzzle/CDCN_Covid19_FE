@@ -78,7 +78,6 @@ function FileOner() {
         result.map((i) =>
           i.confidence > 80 ? (tempResult += i.text + " ") : tempResult
         );
-        console.log(tempResult);
         setInputOCR(tempResult);
       })
       .catch((error) => {
