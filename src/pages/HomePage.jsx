@@ -44,19 +44,8 @@ function HomePage() {
           information related to COVID-19 patients, which are especially useful
           in downstream applications.
         </Typography>
-
-        <Box textAlign="center">
-          <Button
-            variant="contained"
-            align="center"
-            color="primary"
-            href="/product"
-          >
-            Try out our product
-          </Button>
-        </Box>
       </Container>
-      <Container sx={{ pt: 6, pb: 6 }} style={{ height: "400px" }}>
+      <Container sx={{ pt: 6 }}>
         <Typography variant="h3" align="center">
           Products
         </Typography>
@@ -74,6 +63,16 @@ function HomePage() {
             </Typography>
           </ListItem>
         </List>
+        <Box marginTop="1rem" textAlign="center">
+          <Button
+            variant="contained"
+            align="center"
+            color="primary"
+            href="/product"
+          >
+            Try our products
+          </Button>
+        </Box>
         {/* <List>
           <ListItemButton>
             <ListItemText
