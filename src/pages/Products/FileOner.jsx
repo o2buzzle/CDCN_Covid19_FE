@@ -35,6 +35,10 @@ function FileOner() {
     setIsFilePicked(true);
   };
   const handleClearOutput = () => {
+    if (!confirm("Are you sure you want to clear the output?")) {
+      return;
+    }
+    document.getElementById("resetBtnForm").reset();
     const newFormData = new FormData();
     formData = newFormData;
     setIsFilePicked(false);
@@ -67,6 +71,11 @@ function FileOner() {
     //   return;
     // }
     console.log(selectedFile);
+    if (!selectedFile) {
+      alert("Please select a file");
+      return;
+    }
+    setInputOCR("Processing...");
     formData.append("file", selectedFile);
     fetch(`${process.env.REACT_APP_API_HOST}/ocr/file_upload`, {
       method: "POST",
@@ -85,6 +94,7 @@ function FileOner() {
       });
   };
   const handleNERSubmission = () => {
+    setOutputNER([["Processing...", "O"]]);
     fetch(`${process.env.REACT_APP_API_HOST}/ner/text_upload`, {
       method: "POST",
       headers: { "Content-Type": "application/json;charset=utf-8" },
@@ -96,13 +106,14 @@ function FileOner() {
         result.map((i) => tempResult.push([i.token, i.prediction]));
         console.log(tempResult);
         setOutputNER(tempResult);
-        setInputSubmitted(true);})
+        setInputSubmitted(true);
+      })
       .catch((error) => {
         console.error("Error:", error);
       });
   };
   return (
-    <Grid container spacing={1} justifyContent="center" alignItems="baseline">
+    <Grid container spacing={1} justifyContent="center" alignItems="start">
       <Grid item xs={7}>
         <Stack>
           <TextField
@@ -197,65 +208,96 @@ function FileOner() {
                       </span>
                     </Case>
                     <Case value={"LINEBREAK"}>
-                      <br>
-                      </br>
+                      <br></br>
                     </Case>
                     <Default>
                       <Switch condition={i[0]}>
                         <Case value={","}>
-                          <span style={{ color: "black", fontWeight: "bold" }}>{","}</span>
+                          <span style={{ color: "black", fontWeight: "bold" }}>
+                            {","}
+                          </span>
                         </Case>
                         <Case value={"."}>
-                          <span style={{ color: "black", fontWeight: "bold" }}>{"."}</span>
+                          <span style={{ color: "black", fontWeight: "bold" }}>
+                            {"."}
+                          </span>
                         </Case>
                         <Case value={"?"}>
-                          <span style={{ color: "black", fontWeight: "bold" }}>{"?"}</span>
+                          <span style={{ color: "black", fontWeight: "bold" }}>
+                            {"?"}
+                          </span>
                         </Case>
                         <Case value={";"}>
-                          <span style={{ color: "black", fontWeight: "bold" }}>{";"}</span>
+                          <span style={{ color: "black", fontWeight: "bold" }}>
+                            {";"}
+                          </span>
                         </Case>
                         <Case value={"!"}>
-                          <span style={{ color: "black", fontWeight: "bold" }}>{"!"}</span>
+                          <span style={{ color: "black", fontWeight: "bold" }}>
+                            {"!"}
+                          </span>
                         </Case>
                         <Case value={"*"}>
-                          <span style={{ color: "black", fontWeight: "bold" }}>{"*"}</span>
+                          <span style={{ color: "black", fontWeight: "bold" }}>
+                            {"*"}
+                          </span>
                         </Case>
                         <Case value={"}"}>
-                          <span style={{ color: "black", fontWeight: "bold" }}>{")"}</span>
+                          <span style={{ color: "black", fontWeight: "bold" }}>
+                            {")"}
+                          </span>
                         </Case>
                         <Case value={")"}>
-                          <span style={{ color: "black", fontWeight: "bold" }}>{")"}</span>
+                          <span style={{ color: "black", fontWeight: "bold" }}>
+                            {")"}
+                          </span>
                         </Case>
                         <Case value={"@"}>
-                          <span style={{ color: "black", fontWeight: "bold" }}>{"@"}</span>
+                          <span style={{ color: "black", fontWeight: "bold" }}>
+                            {"@"}
+                          </span>
                         </Case>
                         <Case value={"&"}>
-                          <span style={{ color: "black", fontWeight: "bold" }}>{"&"}</span>
+                          <span style={{ color: "black", fontWeight: "bold" }}>
+                            {"&"}
+                          </span>
                         </Case>
                         <Case value={"#"}>
-                          <span style={{ color: "black", fontWeight: "bold" }}>{"#"}</span>
+                          <span style={{ color: "black", fontWeight: "bold" }}>
+                            {"#"}
+                          </span>
                         </Case>
                         <Case value={"%"}>
-                          <span style={{ color: "black", fontWeight: "bold" }}>{"%"}</span>
+                          <span style={{ color: "black", fontWeight: "bold" }}>
+                            {"%"}
+                          </span>
                         </Case>
                         <Case value={"^"}>
-                          <span style={{ color: "black", fontWeight: "bold" }}>{"^"}</span>
+                          <span style={{ color: "black", fontWeight: "bold" }}>
+                            {"^"}
+                          </span>
                         </Case>
                         <Case value={":"}>
-                          <span style={{ color: "black", fontWeight: "bold" }}>{":"}</span>
+                          <span style={{ color: "black", fontWeight: "bold" }}>
+                            {":"}
+                          </span>
                         </Case>
                         <Case value={"]"}>
-                          <span style={{ color: "black", fontWeight: "bold" }}>{"]"}</span>
+                          <span style={{ color: "black", fontWeight: "bold" }}>
+                            {"]"}
+                          </span>
                         </Case>
                         <Case value={"/"}>
-                          <span style={{ color: "black", fontWeight: "bold" }}>{"/"}</span>
+                          <span style={{ color: "black", fontWeight: "bold" }}>
+                            {"/"}
+                          </span>
                         </Case>
                         <Default>
                           <span style={{ color: "black", fontWeight: "bold" }}>
                             {" "}
                             {i[0][0] === "<" ? null : i[0].replaceAll("_", " ")}
                           </span>
-                      </Default>
+                        </Default>
                       </Switch>
                     </Default>
                   </Switch>
@@ -267,7 +309,7 @@ function FileOner() {
           </Box>
         </Stack>
 
-        <Stack direction="row" alignItems="center">
+        <Stack direction="row" alignItems="center" flexWrap="wrap">
           {" "}
           <label htmlFor="contained-button-file">
             <input
@@ -284,6 +326,7 @@ function FileOner() {
                 align: "center",
                 fontSize: "12px",
                 margin: "12px",
+                minWidth: "150px",
               }}
               variant="contained"
               component="span"
@@ -298,6 +341,7 @@ function FileOner() {
               align: "center",
               fontSize: "12px",
               margin: "12px",
+              minWidth: "150px",
             }}
             variant="contained"
             onClick={handleOCRSubmission}
@@ -311,13 +355,14 @@ function FileOner() {
               align: "center",
               fontSize: "12px",
               margin: "12px",
+              minWidth: "150px",
             }}
             variant="contained"
             onClick={handleNERSubmission}
           >
             Submit NER
           </Button>
-          <form onChange="this.form.reset()">
+          <form id="resetBtnForm">
             <Button
               style={{
                 borderRadius: 4,
@@ -325,6 +370,7 @@ function FileOner() {
                 align: "center",
                 fontSize: "12px",
                 margin: "12px",
+                minWidth: "150px",
               }}
               variant="contained"
               onClick={handleClearOutput}
@@ -336,14 +382,18 @@ function FileOner() {
         <div>
           {isFilePicked ? (
             <div>
-              <p> {selectedFile.name}</p>
+              <p>
+                {" "}
+                File to upload: {selectedFile.name} (
+                {Math.floor(selectedFile.size / 1024)} KB)
+              </p>
             </div>
           ) : (
             <p>Select a file to show details</p>
           )}
         </div>
       </Grid>
-      <Grid item>
+      <Grid item alignItems="start">
         <Box
           sx={{ width: "100%", height: 670, maxWidth: 360, bgcolor: "white" }}
         >

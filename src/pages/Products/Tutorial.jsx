@@ -7,7 +7,7 @@ import installguide3 from "../../image/installguide3.png";
 function Tutorial() {
   return (
     <Container>
-      <h1>Tutorial</h1>
+      <h1>Self-hosting guide</h1>
       <p>
         The simplest way to install the whole application stack is to use
         {" " /* prettier-ignore */}
@@ -54,6 +54,11 @@ function Tutorial() {
         (http://localhost).
       </p>
       <img src={installguide3} width="100%" alt="Running Docker Compose" />
+      <p>
+        Should you decide to run the each part of the application separately,
+        visit their respective git repositories or Docker Hub images for the
+        appropriate instructions.
+      </p>
     </Container>
   );
 }

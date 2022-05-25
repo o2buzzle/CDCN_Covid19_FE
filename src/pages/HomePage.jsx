@@ -1,3 +1,4 @@
+import { List, ListItem } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
@@ -38,10 +39,10 @@ function HomePage() {
         >
           Our website provide the lasted AI driven NER for the recent raise of
           COVID-19 cases over the world. Recognizing COVID-19 related named
-          entities in Vietnamese, consisting of 35K entities over 10K sentences.
-          We define 10 entity types with the aim of extracting key information
-          related to COVID-19 patients, which are especially useful in
-          downstream applications.
+          entities in Vietnamese built with a dataset of 35K entities over 10K
+          sentences. We define 10 entity types with the aim of extracting key
+          information related to COVID-19 patients, which are especially useful
+          in downstream applications.
         </Typography>
 
         <Box textAlign="center">
@@ -59,13 +60,20 @@ function HomePage() {
         <Typography variant="h3" align="center">
           Products
         </Typography>
-        <Typography variant="h6">Ours products include</Typography>
-        <Typography mt={3} variant="body1">
-          State of the art Optical Character Recognition or OCR for short
-        </Typography>
-        <Typography mt={3} variant="body1">
-          NER for recognizing COVID-19 related named entities in Vietnamese
-        </Typography>
+        <Typography variant="h6">Our products include:</Typography>
+        <List>
+          <ListItem>
+            <Typography mt={3} variant="body1">
+              State of the art Optical Character Recognition (OCR) engine
+            </Typography>
+          </ListItem>
+          <ListItem>
+            <Typography mt={3} variant="body1">
+              NER model for recognizing COVID-19-related named entities in
+              Vietnamese
+            </Typography>
+          </ListItem>
+        </List>
         {/* <List>
           <ListItemButton>
             <ListItemText
@@ -74,7 +82,7 @@ function HomePage() {
               }}
             >
               {" "}
-              State of the art Optical Character Recognition or OCR for short{" "}
+              State of the art Optical Character Recognition engine{" "}
             </ListItemText>
           </ListItemButton>
 
@@ -89,10 +97,11 @@ function HomePage() {
             width: "100%",
             backgroundColor: "rgba(0, 180, 180, 0.1)",
             borderRadius: "10px",
+            padding: "1rem",
           }}
         >
           <Typography align="center" color="text.primary" variant="h3">
-            Build in OCR
+            Build with OCR
           </Typography>
 
           <Stack

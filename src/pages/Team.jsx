@@ -24,7 +24,7 @@ function Team() {
             textAlign: "center",
           }}
         >
-          OURS TEAM
+          OUR TEAM
         </h1>
       </header>
       <Container style={{ backgroundColor: "#c2c2b0" }}>

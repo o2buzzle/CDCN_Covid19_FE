@@ -17,7 +17,10 @@ const productpages = [
     name: "About",
     link: "/about",
   },
-
+  {
+    name: "Product",
+    link: "/product",
+  },
   {
     name: "Contact",
     link: "/contact",
@@ -46,12 +49,9 @@ function Navbar() {
             sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
             onClick={() => history("/")}
           >
-            ONER
+            <b>ONER</b>
           </Button>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            <Button sx={{ my: 2, color: "white" }} href="/product" id="product">
-              Product
-            </Button>
             {productpages.map((page) => (
               <Button
                 href={page.link}
@@ -71,8 +71,9 @@ function Navbar() {
             noWrap
             component="div"
             sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
+            onClick={() => history("/")}
           >
-            <img src={logo} alt="" width="100" height="50" />
+            <b>ONER</b>
           </Typography>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton onClick={handleOpenNavMenu}>
@@ -98,7 +99,12 @@ function Navbar() {
             >
               {productpages.map((page) => (
                 <MenuItem key={page.name} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page.name}</Typography>
+                  <Button
+                    onClick={() => history(page.link)}
+                    style={{ textDecoration: "none", color: "black" }}
+                  >
+                    <Typography textAlign="center">{page.name}</Typography>
+                  </Button>
                 </MenuItem>
               ))}
             </Menu>

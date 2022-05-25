@@ -6,7 +6,7 @@ import React from "react";
 
 const footers = [
   {
-    title: "Oner",
+    title: "About ONER",
     description: [
       { name: "Team", link: "/about" },
       { name: "Contact us", link: "/contact" },
@@ -19,6 +19,10 @@ const footers = [
       { name: "NER", link: "/product" },
       { name: "API documentation", link: "/product/api-document" },
     ],
+  },
+  {
+    title: "Resources",
+    description: [{ name: "Self-hosting guide", link: "/product/tutorial" }],
   },
   // {
   //   title: "Legal",
