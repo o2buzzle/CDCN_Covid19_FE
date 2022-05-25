@@ -101,7 +101,7 @@ function HomePage() {
           }}
         >
           <Typography align="center" color="text.primary" variant="h3">
-            Build with OCR
+            Build with our services
           </Typography>
 
           <Stack
