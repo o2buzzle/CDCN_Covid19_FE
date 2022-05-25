@@ -22,42 +22,44 @@ function HomePage() {
           backgroundColor: "rgba(0, 180, 180, 0.1)",
         }}
       >
-        <Typography
-          align="center"
-          color="text.primary"
-          variant="h3"
-          sx={{ pt: 0, pb: 4 }}
-        >
-          NER COVID text analyzer with built-in OCR
-        </Typography>
+        <Container>
+          <Typography
+            align="center"
+            color="text.primary"
+            variant="h3"
+            sx={{ pt: 0, pb: 4 }}
+          >
+            NER COVID text analyzer with built-in OCR
+          </Typography>
 
-        <Typography
-          align="center"
-          color="text.primary"
-          variant="h5"
-          sx={{ pt: 0, pb: 4 }}
-        >
-          Our website provide the lasted AI driven NER for the recent raise of
-          COVID-19 cases over the world. Recognizing COVID-19 related named
-          entities in Vietnamese built with a dataset of 35K entities over 10K
-          sentences. We define 10 entity types with the aim of extracting key
-          information related to COVID-19 patients, which are especially useful
-          in downstream applications.
-        </Typography>
+          <Typography
+            align="center"
+            color="text.primary"
+            variant="h5"
+            sx={{ pt: 0, pb: 4 }}
+          >
+            Our website provide the lasted AI driven NER for the recent raise of
+            COVID-19 cases over the world. Recognizing COVID-19 related named
+            entities in Vietnamese built with a dataset of 35K entities over 10K
+            sentences. We define 10 entity types with the aim of extracting key
+            information related to COVID-19 patients, which are especially
+            useful in downstream applications.
+          </Typography>
+        </Container>
       </Container>
       <Container sx={{ pt: 6 }}>
         <Typography variant="h3" align="center">
           Products
         </Typography>
-        <Typography variant="h6">Our products include:</Typography>
+        <Typography variant="h4">Our products include:</Typography>
         <List>
           <ListItem>
-            <Typography mt={3} variant="body1">
+            <Typography variant="h6">
               State of the art Optical Character Recognition (OCR) engine
             </Typography>
           </ListItem>
           <ListItem>
-            <Typography mt={3} variant="body1">
+            <Typography variant="h6">
               NER model for recognizing COVID-19-related named entities in
               Vietnamese
             </Typography>
@@ -70,7 +72,7 @@ function HomePage() {
             color="primary"
             href="/product"
           >
-            Try our products
+            Try our products now
           </Button>
         </Box>
         {/* <List>
