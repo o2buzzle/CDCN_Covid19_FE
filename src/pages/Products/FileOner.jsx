@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { Button, Stack, TextField } from "@mui/material";
+import { Button, Stack, TextField, Tooltip } from "@mui/material";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import List from "@mui/material/List";
@@ -46,6 +46,7 @@ function FileOner() {
     setOutputOCR("");
     setOutputNER();
     setInputSubmitted(false);
+    document.getElementById("ner-mappings-box").style.display = "block";
   };
   const handleFileTextSubmission = () => {
     console.log(selectedFile);
@@ -111,6 +112,7 @@ function FileOner() {
       .catch((error) => {
         console.error("Error:", error);
       });
+    document.getElementById("ner-mappings-box").style.display = "none";
   };
   return (
     <Grid container spacing={1} justifyContent="center" alignItems="start">
@@ -141,71 +143,93 @@ function FileOner() {
                 {outputNER.map((i) => (
                   <Switch condition={i[1].substring(2)}>
                     <Case value={"PATIENT_ID"}>
-                      <span style={{ color: patient_id, fontWeight: "bold" }}>
-                        {" "}
-                        {i[0].replaceAll("_", " ")}
-                      </span>
+                      <Tooltip title="PATIENT_ID">
+                        <span style={{ color: patient_id, fontWeight: "bold" }}>
+                          {" "}
+                          {i[0].replaceAll("_", " ")}
+                        </span>
+                      </Tooltip>
                     </Case>
                     <Case value={"NAME"}>
-                      <span style={{ color: name, fontWeight: "bold" }}>
-                        {" "}
-                        {i[0].replaceAll("_", " ")}
-                      </span>
+                      <Tooltip title="NAME">
+                        <span style={{ color: name, fontWeight: "bold" }}>
+                          {" "}
+                          {i[0].replaceAll("_", " ")}
+                        </span>
+                      </Tooltip>
                     </Case>
                     <Case value={"AGE"}>
-                      <span style={{ color: age, fontWeight: "bold" }}>
-                        {" "}
-                        {i[0].replaceAll("_", " ")}
-                      </span>
+                      <Tooltip title="AGE">
+                        <span style={{ color: age, fontWeight: "bold" }}>
+                          {" "}
+                          {i[0].replaceAll("_", " ")}
+                        </span>
+                      </Tooltip>
                     </Case>
                     <Case value={"GENDER"}>
-                      <span style={{ color: gender, fontWeight: "bold" }}>
-                        {" "}
-                        {i[0].replaceAll("_", " ")}
-                      </span>
+                      <Tooltip title="GENDER">
+                        <span style={{ color: gender, fontWeight: "bold" }}>
+                          {" "}
+                          {i[0].replaceAll("_", " ")}
+                        </span>
+                      </Tooltip>
                     </Case>
                     <Case value={"JOB"}>
-                      <span style={{ color: job, fontWeight: "bold" }}>
-                        {" "}
-                        {i[0].replaceAll("_", " ")}
-                      </span>
+                      <Tooltip title="JOB">
+                        <span style={{ color: job, fontWeight: "bold" }}>
+                          {" "}
+                          {i[0].replaceAll("_", " ")}
+                        </span>
+                      </Tooltip>
                     </Case>
                     <Case value={"ORGANIZATION"}>
-                      <span style={{ color: organization, fontWeight: "bold" }}>
-                        {" "}
-                        {i[0].replaceAll("_", " ")}
-                      </span>
+                      <Tooltip title="ORGANIZATION">
+                        <span
+                          style={{ color: organization, fontWeight: "bold" }}
+                        >
+                          {" "}
+                          {i[0].replaceAll("_", " ")}
+                        </span>
+                      </Tooltip>
                     </Case>
                     <Case value={"LOCATION"}>
-                      <span style={{ color: location, fontWeight: "bold" }}>
-                        {" "}
-                        {i[0].replaceAll("_", " ")}
-                      </span>
+                      <Tooltip title="LOCATION">
+                        <span style={{ color: location, fontWeight: "bold" }}>
+                          {" "}
+                          {i[0].replaceAll("_", " ")}
+                        </span>
+                      </Tooltip>
                     </Case>
                     <Case value={"DATE"}>
-                      <span style={{ color: date, fontWeight: "bold" }}>
-                        {" "}
-                        {i[0].replaceAll("_", " ")}
-                      </span>
+                      <Tooltip title="DATE">
+                        <span style={{ color: date, fontWeight: "bold" }}>
+                          {" "}
+                          {i[0].replaceAll("_", " ")}
+                        </span>
+                      </Tooltip>
                     </Case>
                     <Case value={"SYMTOM_AND_DISEASE"}>
-                      <span
-                        style={{
-                          color: symtom_and_disease,
-                          fontWeight: "bold",
-                        }}
-                      >
-                        {" "}
-                        {i[0].replaceAll("_", " ")}
-                      </span>
+                      <Tooltip title="SYMTOM_AND_DISEASE">
+                        <span
+                          style={{
+                            color: symtom_and_disease,
+                            fontWeight: "bold",
+                          }}
+                        >
+                          {" "}
+                          {i[0].replaceAll("_", " ")}
+                        </span>
+                      </Tooltip>
                     </Case>
                     <Case value={"TRANSPORTATION"}>
-                      <span
-                        style={{ color: transportation, fontWeight: "bold" }}
-                      >
-                        {" "}
-                        {i[0].replaceAll("_", " ")}
-                      </span>
+                      <Tooltip title="TRANSPORTATION">
+                        <span
+                          style={{ color: transportation, fontWeight: "bold" }}
+                        >
+                          {" "}
+                          {i[0].replaceAll("_", " ")}
+                        </span>
+                      </Tooltip>
                     </Case>
                     <Case value={"LINEBREAK"}>
                       <br></br>
@@ -393,7 +417,7 @@ function FileOner() {
           )}
         </div>
       </Grid>
-      <Grid item alignItems="start">
+      <Grid id="ner-mappings-box" item alignItems="start">
         <Box
           sx={{ width: "100%", height: 670, maxWidth: 360, bgcolor: "white" }}
         >
