@@ -70,7 +70,7 @@ function FileOner() {
     //   console.log("No File");
     //   return;
     // }
-    console.log(selectedFile);
+    // console.log(selectedFile);
     if (!selectedFile) {
       alert("Please select a file");
       return;
@@ -104,7 +104,7 @@ function FileOner() {
       .then((result) => {
         let tempResult = [];
         result.map((i) => tempResult.push([i.token, i.prediction]));
-        console.log(tempResult);
+        // console.log(tempResult);
         setOutputNER(tempResult);
         setInputSubmitted(true);
       })
